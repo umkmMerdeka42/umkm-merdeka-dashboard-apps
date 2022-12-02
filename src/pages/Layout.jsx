@@ -5,10 +5,12 @@ import Sidebar from '../components/Sidebar';
 const Layout = ({children}) => {
   return (
     <React.Fragment>
-      <Sidebar />
-      <Navbar />
-      <div>
-        <main>{children}</main>
+      <div className="flex bg-slate-100">
+        <Sidebar />
+        <Navbar />
+        <div className="mt-24 ml-2">
+          <main>{children}</main>
+        </div>
       </div>
     </React.Fragment>
   )

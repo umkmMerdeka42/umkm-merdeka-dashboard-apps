@@ -8,3 +8,54 @@
   @apply scroll-smooth;
   font-family: "Poppins", sans-serif;
 }
+
+.sidebar .nav-links {
+  margin-top: 10px;
+}
+.sidebar .nav-links li a {
+  transition: all 0.4s ease;
+}
+.sidebar .nav-links li a.active {
+  background: #081d45;
+}
+
+.home-section {
+  width: calc(100% - 240px);
+  transition: all 0.5s ease;
+}
+.sidebar.active ~ .home-section {
+  width: calc(100% - 60px);
+  left: 60px;
+}
+.home-section nav {
+  z-index: 100;
+  padding: 25px;
+  width: calc(100% - 240px);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.sidebar.active ~ .home-section nav {
+  left: 60px;
+  width: calc(100% - 60px);
+}
+
+/* Responsive Media Query */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 60px;
+  }
+  .sidebar.active {
+    width: 220px;
+  }
+  .home-section {
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .home-section nav {
+    width: calc(100% - 60px);
+    left: 60px;
+  }
+  .sidebar.active ~ .home-section nav {
+    width: calc(100% - 220px);
+    left: 220px;
+  }
+}
