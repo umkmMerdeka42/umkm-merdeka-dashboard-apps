@@ -3,7 +3,7 @@ import React from 'react';
 const ListProduct = () => {
   return (
     <div>
-      <section className="w-[270px] md:w-[640px] lg:w-[50rem] xl:w-[68rem] 2xl:w-[80rem] text-gray-600">
+      <section className="w-[270px] md:w-[640px] lg:w-[50rem] xl:w-[62rem] text-gray-600">
         <div className="flex flex-col justify-center h-full">
           <div className="w-full mr-[14px] bg-white shadow-lg rounded-sm border border-gray-200">
             <header className="px-5 py-4 border-b border-gray-100 flex justify-between items-center">
@@ -40,7 +40,7 @@ const ListProduct = () => {
                     <tbody className="text-sm divide-y divide-gray-100">
                       <tr>
                         <td className="p-2 whitespace-nowrap">
-                          <div className="text-left">1.</div>
+                          <div className="px-4 lg:px-0 text-left">1.</div>
                         </td>
                         <td className="p-2 whitespace-nowrap">
                           <div className="flex items-center px-4 lg:px-0">
@@ -64,6 +64,7 @@ const ListProduct = () => {
                           <button className="bg-red-400 transition duration-200 ease-linear hover:bg-red-300 active:bg-red-500 text-white rounded-full px-2 py-1"><i className="fa-solid fa-trash"></i></button>
                         </td>
                       </tr>
+                      
                     </tbody>
                 </table>
               </div>

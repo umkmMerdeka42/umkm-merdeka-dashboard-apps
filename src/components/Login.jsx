@@ -33,8 +33,7 @@ const Login = () => {
                 </div>
               </form>
 
-              <p className="mt-6 text-sm text-center text-gray-400">Belum berabung di UMKM Merdeka?
-               <NavLink to="/register" className="text-secondary focus:text-primary hover:text-primary no-underline ">Sign up</NavLink></p>
+              <p className="mt-6 text-sm text-center text-gray-400">Belum berabung di UMKM Merdeka? <NavLink to="/register" className="text-secondary focus:text-primary hover:text-primary no-underline">Sign up</NavLink></p>
             </div>
           </div>
         </div>
