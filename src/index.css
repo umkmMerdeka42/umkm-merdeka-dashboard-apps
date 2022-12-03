@@ -39,10 +39,7 @@
 }
 
 /* Responsive Media Query */
-@media (max-width: 768px) {
-  .sidebar {
-    width: 60px;
-  }
+@media (max-width: 1021px) {
   .sidebar.active {
     width: 220px;
   }
