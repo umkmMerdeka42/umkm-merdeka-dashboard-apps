@@ -5,6 +5,10 @@ import { store } from './app/store';
 import '@fortawesome/fontawesome-free/css/all.css';
 import App from './App';
 import './index.css';
+import 'tw-elements';
+import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 const container = document.getElementById('root');
 const root = createRoot(container);

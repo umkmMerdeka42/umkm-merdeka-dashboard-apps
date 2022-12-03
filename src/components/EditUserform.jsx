@@ -48,11 +48,14 @@ const EditUserform = () => {
                 </div>
 
                 <div>
-                  <button className="block w-full px-5 py-4 mt-2 md:mt-7 text-sm tracking-wide text-white capitalize transition-colors duration-200 ease-in-out rounded-md bg-[#0a2558] hover:bg-sky-600 focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50">
+                  <button
+                    type="submit"
+                    data-mdb-ripple="true"
+                    data-mdb-ripple-color="light"
+                    className="block w-full px-5 py-4 mt-2 md:mt-7 text-sm tracking-wide text-white capitalize transition-colors duration-200 ease-in-out rounded-md bg-[#0a2558] hover:bg-sky-700 focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50">
                     <span>Edit Customers</span>
                   </button>
                 </div>
-
               </form>
             </div>
           </div>

@@ -54,7 +54,11 @@ const Register = () => {
                 </div>
 
                 <div>
-                  <button className="block w-full px-5 py-4 mt-2 md:mt-7 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-gradient-to-r from-primary to-secondary rounded-md hover:bg-secondary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50">
+                  <button
+                    type="submit"
+                    data-mdb-ripple="true"
+                    data-mdb-ripple-color="light"
+                    className="block w-full px-5 py-4 mt-2 md:mt-7 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-gradient-to-r from-primary to-secondary rounded-md hover:bg-secondary focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50">
                     <span>Sign Up</span>
                   </button>
                 </div>

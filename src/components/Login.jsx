@@ -1,8 +1,30 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { loginUser, reset } from '../features/auth';
 import Logo from '../public/images/UMKM-Merdeka-Brands.png';
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { user, isError, isSuccess, isLoading, message } = useSelector(
+    (state) => state.auth
+  );
+
+  useEffect(() => {
+    if (user || isSuccess) {
+      navigate('/dashboard');
+    }
+    dispatch(reset());
+  }, [user, isSuccess, dispatch, navigate]);
+
+  const Auth = (e) => {
+    e.preventDefault();
+    dispatch(loginUser({ email, password }));
+  };
+
   return (
     <div>
       <div className="flex justify-center p-8 px-6">
@@ -15,20 +37,40 @@ const Login = () => {
             </div>
 
             <div className="mt-8">
-              <form>
+              <form onSubmit={Auth}>
+                {isError && <p className="text-center">{message}</p>}
                 <div>
                     <label htmlFor="email" className="block mb-2 text-lg font-semibold text-gray-600">Alamat Email</label>
-                    <input type="email" name="email" id="email" placeholder="Email Kamu" className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                    <input                      
+                      type="email"
+                      name="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      id="email"
+                      placeholder="Email Kamu"
+                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                    />
                 </div>
 
                 <div className="mt-6">
                   <label htmlFor="email" className="block mb-2 text-lg font-semibold text-gray-600">Password</label>
-                  <input type="password" name="password" id="password" placeholder="Password Kamu" className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    type="password"
+                    name="password"
+                    id="password"
+                    placeholder="Password Kamu"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div className="mt-6">
-                  <button data-mdb-ripple="true" data-mdb-ripple-color="light" type="submit" className="group relative flex w-full justify-center rounded-md border border-transparent bg-gradient-to-r from-primary to-secondary py-2 px-4 text-sm font-medium text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                    Sign in
+                  <button
+                    type="submit"
+                    data-mdb-ripple="true"
+                    data-mdb-ripple-color="light"
+                    className="group relative flex w-full justify-center rounded-md border border-transparent bg-gradient-to-r from-primary to-secondary py-2 px-4 text-sm font-medium text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+                      {isLoading ? 'Loading...' : 'Sign in'}
                   </button>
                 </div>
               </form>
