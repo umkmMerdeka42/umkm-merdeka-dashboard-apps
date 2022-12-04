@@ -1,8 +1,44 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import {NavLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import API_ENDPOINT from '../global/api-endpoint';
 import Logo from '../public/images/UMKM-Merdeka-Brands.png';
+import Alert from './Alert';
 
 const Register = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [telephone, setTelephone] = useState('');
+  const [university, setUniversity] = useState('');
+  const [nim, setNim] = useState('');
+  const [password, setPassword] = useState('');
+  const [confPassword, setConfPassword] = useState('');
+  const [message, setMessage] = useState('');
+
+  const navigate = useNavigate();
+
+  const { USERS } = API_ENDPOINT;
+
+  const register = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(USERS, {
+        name: name,
+        email: email,
+        telephone:telephone,
+        university: university,
+        nim: nim,
+        password: password,
+        confPassword: confPassword
+      });
+      navigate('/');
+    } catch (error) {
+        if (error.response) {
+          setMessage(error.response.data.message)
+        }
+    }
+  }
+  
   return (
     <div>
       <section className="bg-white">
@@ -16,41 +52,75 @@ const Register = () => {
               <h1 className="mt-4 text-gray-500 font-semibold text-center">
                 Ayoo!, Bergabung dengan UMKM Merdeka Sekarang...
               </h1>
+              {message && Alert(message)}
 
-              <form id="register" className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+              <form onSubmit={register} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Nama</label>
-                  <input type="text" placeholder="Nama Kamu" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    type="text"
+                    placeholder="Nama Kamu"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Email</label>
-                  <input type="text" placeholder="Emaill Kamu" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    type="email"
+                    placeholder="Emaill Kamu"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Telephone</label>
-                  <input type="text" placeholder="No Telephone Kamu" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={telephone}
+                    onChange={(e) => setTelephone(e.target.value)}
+                    type="text"
+                    placeholder="No Telephone Kamu"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Universitas</label>
-                  <input type="email" placeholder="Kampus Kamu" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={university}
+                    onChange={(e) => setUniversity(e.target.value)}
+                    type="text"
+                    placeholder="Kampus Kamu"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">NIM / NPM</label>
-                  <input type="NIM / NPM Kamu" placeholder="Enter your password" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={nim}
+                    onChange={(e) => setNim(e.target.value)}
+                    type="text"
+                    placeholder="NIM / NPM Kamu"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Password</label>
-                  <input type="password" placeholder="Password Kamu" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                    placeholder="Password Kamu"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Konfirmasi Password</label>
-                  <input type="password" placeholder="Konfirmasi Password Kamu" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={confPassword}
+                    onChange={(e) => setConfPassword(e.target.value)}
+                    type="password" placeholder="Konfirmasi Password Kamu" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
@@ -62,8 +132,8 @@ const Register = () => {
                     <span>Sign Up</span>
                   </button>
                 </div>
-
               </form>
+
               <p className="mt-6 text-sm text-center text-gray-400">Sudah bergabung dengan UMKM Merdeka? <NavLink to="/" className="text-secondary focus:text-primary hover:text-primary no-underline">Sign In</NavLink>.</p>
             </div>
           </div>

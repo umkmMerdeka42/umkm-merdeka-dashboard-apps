@@ -7,9 +7,11 @@ const API_ENDPOINT = {
   LOGOUT: `${BASE_URL}/logout`,
   SESSION: `${BASE_URL}/session`,
   ALL_PRODUCT: `${BASE_URL}/products`,
+  UPDATE_PRODUCT: (id) => `${BASE_URL}/products/${id}`,
   DETAIL_PRODUCT: (id) => `${BASE_URL}/products/${id}`,
   DELETE_PRODUCT: (id) => `${BASE_URL}/products/${id}`,
   USERS: `${BASE_URL}/users`,
+  UPDATE_USERS: (id) => `${BASE_URL}/users/${id}`,
   DETAIL_USERS: (id) => `${BASE_URL}/users/${id}`,
   DELETE_USERS: (id) => `${BASE_URL}/users/${id}`,
 };

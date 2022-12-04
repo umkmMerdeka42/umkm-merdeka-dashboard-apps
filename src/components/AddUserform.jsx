@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
 import Alert from './Alert';
 
@@ -46,9 +46,8 @@ const AddUserform = () => {
             <div className="w-full">
               <h1 className=" text-gray-900 text-xl font-semibold text-center">
                 Tambah Customers UMKM Merdeka
-                {message && Alert(message)}
               </h1>
-              <p className="text-center">{message}</p>
+              {message && Alert(message)}
 
               <form onSubmit={addUsers} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                 <div>
@@ -96,8 +95,8 @@ const AddUserform = () => {
                   <input
                     value={nim}
                     onChange={(e) => setNim(e.target.value)}
-                    type="NIM / NPM Customers"
-                    placeholder="Enter your password"
+                    type="text"
+                    placeholder="NIM / NPM Customers"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 

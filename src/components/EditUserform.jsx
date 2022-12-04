@@ -1,6 +1,62 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import API_ENDPOINT from '../global/api-endpoint';
+import Alert from './Alert';
 
 const EditUserform = () => {
+  const { UPDATE_USERS, DETAIL_USERS } = API_ENDPOINT;
+
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [telephone, setTelephone] = useState('');
+  const [university, setUniversity] = useState('');
+  const [nim, setNim] = useState('');
+  const [password, setPassword] = useState('');
+  const [confPassword, setConfPassword] = useState('');
+  const [message, setMessage] = useState('');
+
+  const navigate = useNavigate();
+
+  const { id } = useParams();
+
+
+  useEffect(() => {
+    const getUserById = async () => {
+      try {
+        const response = await axios.get(DETAIL_USERS(id));
+        setName(response.data.data.name);
+        setEmail(response.data.data.email);
+        setTelephone(response.data.data.telephone);
+        setUniversity(response.data.data.university);
+        setNim(response.data.data.nim);
+      } catch (error) {
+        setMessage(error.response.data.message);
+      }
+    };
+    getUserById();
+  }, [DETAIL_USERS, id]);
+
+  const editUsers = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.put(UPDATE_USERS(id), {
+        name: name,
+        email: email,
+        telephone:telephone,
+        university: university,
+        nim: nim,
+        password: password,
+        confPassword: confPassword
+      });
+      navigate('/users');
+    } catch (error) {
+        if (error.response) {
+          setMessage(error.response.data.message)
+        }
+    }
+  }
+  
   return (
     <div>
       <section className="bg-white md:border rounded-md md:shadow-md mb-7">
@@ -10,41 +66,77 @@ const EditUserform = () => {
               <h1 className=" text-gray-900 text-xl font-semibold text-center">
                 Edit Customers UMKM Merdeka
               </h1>
+              {message && Alert(message)}
 
-              <form id="editUsers" className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+              <form onSubmit={editUsers} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Nama</label>
-                  <input type="text" placeholder="Nama Customers" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    type="text"
+                    placeholder="Nama Customers"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Email</label>
-                  <input type="text" placeholder="Emaill Customers" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="email"
+                  placeholder="Emaill Customers"
+                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Telephone</label>
-                  <input type="text" placeholder="No Telephone Customers" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={telephone}
+                    onChange={(e) => setTelephone(e.target.value)}
+                    type="text"
+                    placeholder="No Telephone Customers"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Universitas</label>
-                  <input type="email" placeholder="Kampus Customers" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={university}
+                    onChange={(e) => setUniversity(e.target.value)}
+                    type="text"
+                    placeholder="Kampus Customers"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">NIM / NPM</label>
-                  <input type="NIM / NPM Customers" placeholder="Enter your password" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={nim}
+                    onChange={(e) => setNim(e.target.value)}
+                    type="text"
+                    placeholder="NIM / NPM Customers"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Password</label>
-                  <input type="password" placeholder="Password Customers" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                    placeholder="Password Customers"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Konfirmasi Password</label>
-                  <input type="password" placeholder="Konfirmasi Password Customers" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={confPassword}
+                    onChange={(e) => setConfPassword(e.target.value)}
+                    type="password"
+                    placeholder="Konfirmasi Password Customers"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
@@ -53,7 +145,7 @@ const EditUserform = () => {
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
                     className="block w-full px-5 py-4 mt-2 md:mt-7 text-sm tracking-wide text-white capitalize transition-colors duration-200 ease-in-out rounded-md bg-[#0a2558] hover:bg-sky-700 focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50">
-                    <span>Edit Customers</span>
+                    <span>Update Customers</span>
                   </button>
                 </div>
               </form>
