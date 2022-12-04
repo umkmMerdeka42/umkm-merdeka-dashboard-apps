@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { loginUser, reset } from '../features/auth';
 import Logo from '../public/images/UMKM-Merdeka-Brands.png';
+import Spinner from './Spinner';
+import toasElement from './Alert';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,7 +29,7 @@ const Login = () => {
 
   return (
     <div>
-      <div className="flex justify-center p-8 px-6">
+      <div className="flex justify-center items-center h-screen -mt-6 px-6">
         <div className="w-full max-w-md my-auto lg:w-2/6">
           <div className="flex-1">
             <div className="flex flex-col justify-center items-center w-full text-center">
@@ -38,7 +40,8 @@ const Login = () => {
 
             <div className="mt-8">
               <form onSubmit={Auth}>
-                {isError && <p className="text-center">{message}</p>}
+                {isError && toasElement(message)}
+                {isLoading && <Spinner />}
                 <div>
                     <label htmlFor="email" className="block mb-2 text-lg font-semibold text-gray-600">Alamat Email</label>
                     <input                      
@@ -70,7 +73,7 @@ const Login = () => {
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
                     className="group relative flex w-full justify-center rounded-md border border-transparent bg-gradient-to-r from-primary to-secondary py-2 px-4 text-sm font-medium text-white hover:bg-primary focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
-                      {isLoading ? 'Loading...' : 'Sign in'}
+                      Sign In
                   </button>
                 </div>
               </form>
