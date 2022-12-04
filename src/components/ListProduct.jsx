@@ -9,17 +9,17 @@ const ListProduct = () => {
 
   useEffect(() => {
     allProduct();
-  }, [])
+  });
 
   const allProduct = async () => {
     const response = await axios.get(ALL_PRODUCT);
     setProducts(response.data.data);
-  }
+  };
 
   const deleteProduct = async (id) => {
     await axios.delete(DELETE_PRODUCT(id));
     allProduct();
-  }
+  };
   
   return (
     <div>
@@ -82,7 +82,7 @@ const ListProduct = () => {
                             </div>
                           </td>
                           <td className="py-2 whitespace-nowrap">
-                            <div className="px-4 lg:px-0 text-left">{product.price}</div>
+                            <div className="px-4 lg:px-0 text-left">Rp.{product.price},-</div>
                           </td>
                           <td className="py-2 whitespace-nowrap">
                             <div className="px-4 lg:px-0 text-left">{product.category}</div>
@@ -99,14 +99,14 @@ const ListProduct = () => {
                                 type="button"
                                 data-mdb-ripple="true"
                                 data-mdb-ripple-color="light"
-                                className="bg-yellow-400 transition duration-200 ease-linear hover:bg-yellow-300 active:bg-yellow-500 text-white rounded-full px-2 py-1 mr-2 shadow-md"><i className="fa-solid fa-pen-to-square"></i></button>
+                                className="bg-yellow-400 min-w-[44px] min-h-[44px] transition duration-200 ease-linear hover:bg-yellow-300 active:bg-yellow-500 text-white rounded-full px-2 py-1 mr-2 shadow-md"><i className="fa-solid fa-pen-to-square"></i></button>
                             </Link>
                             <button
                               type="button"
                               onClick={() => deleteProduct(product.uuid)}
                               data-mdb-ripple="true"
                               data-mdb-ripple-color="light"
-                              className="bg-red-400 transition duration-200 ease-linear hover:bg-red-300 active:bg-red-500 text-white rounded-full px-2 py-1 shadow-md"><i className="fa-solid fa-trash"></i></button>
+                              className="bg-red-400 min-w-[44px] min-h-[44px] transition duration-200 ease-linear hover:bg-red-300 active:bg-red-500 text-white rounded-full px-2 py-1 shadow-md"><i className="fa-solid fa-trash"></i></button>
                           </td>
                         </tr>
                       ))}

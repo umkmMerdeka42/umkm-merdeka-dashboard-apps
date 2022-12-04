@@ -1,6 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import API_ENDPOINT from '../global/api-endpoint';
+import Alert from './Alert';
 
 const AddUserform = () => {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [telephone, setTelephone] = useState('');
+  const [university, setUniversity] = useState('');
+  const [nim, setNim] = useState('');
+  const [password, setPassword] = useState('');
+  const [confPassword, setConfPassword] = useState('');
+  const [message, setMessage] = useState('');
+
+  const navigate = useNavigate();
+
+  const { USERS } = API_ENDPOINT;
+
+  const addUsers = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post(USERS, {
+        name: name,
+        email: email,
+        telephone:telephone,
+        university: university,
+        nim: nim,
+        password: password,
+        confPassword: confPassword
+      });
+      navigate('/users');
+    } catch (error) {
+        if (error.response) {
+          setMessage(error.response.data.message)
+        }
+    }
+  }
+  
   return (
     <div>
       <section className="bg-white md:border rounded-md md:shadow-md mb-7">
@@ -9,42 +46,79 @@ const AddUserform = () => {
             <div className="w-full">
               <h1 className=" text-gray-900 text-xl font-semibold text-center">
                 Tambah Customers UMKM Merdeka
+                {message && Alert(message)}
               </h1>
+              <p className="text-center">{message}</p>
 
-              <form id="addUsers" className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+              <form onSubmit={addUsers} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Nama</label>
-                  <input type="text" placeholder="Nama Customers" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    type="text"
+                    placeholder="Nama Customers"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Email</label>
-                  <input type="text" placeholder="Emaill Customers" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  type="email"
+                  placeholder="Emaill Customers"
+                  className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Telephone</label>
-                  <input type="text" placeholder="No Telephone Customers" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={telephone}
+                    onChange={(e) => setTelephone(e.target.value)}
+                    type="text"
+                    placeholder="No Telephone Customers"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Universitas</label>
-                  <input type="email" placeholder="Kampus Customers" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={university}
+                    onChange={(e) => setUniversity(e.target.value)}
+                    type="text"
+                    placeholder="Kampus Customers"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">NIM / NPM</label>
-                  <input type="NIM / NPM Customers" placeholder="Enter your password" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={nim}
+                    onChange={(e) => setNim(e.target.value)}
+                    type="NIM / NPM Customers"
+                    placeholder="Enter your password"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Password</label>
-                  <input type="password" placeholder="Password Customers" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    type="password"
+                    placeholder="Password Customers"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Konfirmasi Password</label>
-                  <input type="password" placeholder="Konfirmasi Password Customers" className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                  <input
+                    value={confPassword}
+                    onChange={(e) => setConfPassword(e.target.value)}
+                    type="password"
+                    placeholder="Konfirmasi Password Customers"
+                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>

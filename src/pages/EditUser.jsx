@@ -8,7 +8,7 @@ import { sessionUser } from '../features/auth';
 const EditUser = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { isError, user } = useSelector((state => state.auth));
+  const { isError } = useSelector((state => state.auth));
 
   useEffect(() => {
     dispatch(sessionUser());
@@ -18,10 +18,7 @@ const EditUser = () => {
     if (isError) {
       navigate('/');
     }
-    if (user && user.data.role !== 'admin') {
-      navigate('/dashboard');
-    }
-  }, [isError, user, navigate]);
+  }, [isError, navigate]);
 
   return (
     <Layout>

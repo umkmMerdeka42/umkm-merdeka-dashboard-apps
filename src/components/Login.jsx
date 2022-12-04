@@ -4,7 +4,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { loginUser, reset } from '../features/auth';
 import Logo from '../public/images/UMKM-Merdeka-Brands.png';
 import Spinner from './Spinner';
-import toasElement from './Alert';
+import Alert from './Alert';
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -40,7 +40,7 @@ const Login = () => {
 
             <div className="mt-8">
               <form onSubmit={Auth}>
-                {isError && toasElement(message)}
+                {isError && Alert(message)}
                 {isLoading && <Spinner />}
                 <div>
                     <label htmlFor="email" className="block mb-2 text-lg font-semibold text-gray-600">Alamat Email</label>
