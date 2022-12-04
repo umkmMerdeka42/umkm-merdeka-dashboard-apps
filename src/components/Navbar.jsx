@@ -8,8 +8,8 @@ const Navbar = () => {
     <div>
       <section className="relative bg-[#f5f5f5] left-60 home-section transition-all duration-75 ease-in">
         <nav className="flex justify-between bg-[#fff] items-center fixed left[60px] lg:left-60">
-          <div className="flex items-center text-xl font-medium sidebar-button">
-            <span className="dashboard font-semibold">Dashboard: { user && user.data.name }</span>
+          <div className="flex items-center font-medium sidebar-button">
+            <span className="dashboard font-semibold text-base md:text-xl">Dashboard: { user && user.data.name }</span>
           </div>
         </nav>
       </section>
