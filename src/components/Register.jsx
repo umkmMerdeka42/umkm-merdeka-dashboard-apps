@@ -4,8 +4,11 @@ import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
 import Logo from '../public/images/UMKM-Merdeka-Brands.png';
 import Alert from './Alert';
+import Spinner from './Spinner';
 
 const Register = () => {
+  const { USERS } = API_ENDPOINT;
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [telephone, setTelephone] = useState('');
@@ -14,14 +17,14 @@ const Register = () => {
   const [password, setPassword] = useState('');
   const [confPassword, setConfPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
-
-  const { USERS } = API_ENDPOINT;
 
   const register = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       await axios.post(USERS, {
         name: name,
         email: email,
@@ -31,10 +34,12 @@ const Register = () => {
         password: password,
         confPassword: confPassword
       });
+      setIsLoading(false);
       navigate('/');
     } catch (error) {
         if (error.response) {
           setMessage(error.response.data.message)
+          setIsLoading(false);
         }
     }
   }
@@ -55,6 +60,7 @@ const Register = () => {
               {message && Alert(message)}
 
               <form onSubmit={register} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+                {isLoading && <Spinner/>}
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Nama</label>
                   <input
@@ -71,17 +77,17 @@ const Register = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     type="email"
-                    placeholder="Emaill Kamu"
+                    placeholder="Email Kamu"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
                 <div>
-                  <label className="block mb-2 text-sm text-gray-600">Telephone</label>
+                  <label className="block mb-2 text-sm text-gray-600">No Wa Aktif</label>
                   <input
                     value={telephone}
                     onChange={(e) => setTelephone(e.target.value)}
                     type="text"
-                    placeholder="No Telephone Kamu"
+                    placeholder="No Wa Aktif Kamu"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 

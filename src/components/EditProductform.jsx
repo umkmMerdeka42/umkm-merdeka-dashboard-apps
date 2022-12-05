@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
 import Alert from './Alert';
+import Spinner from './Spinner';
 
 const EditProductform = () => {
   const { DETAIL_PRODUCT, UPDATE_PRODUCT } = API_ENDPOINT;
@@ -14,6 +15,7 @@ const EditProductform = () => {
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -21,6 +23,7 @@ const EditProductform = () => {
 
   useEffect(() => {
     const getProductById = async () => {
+      setIsLoading(true);
       const response = await axios.get(DETAIL_PRODUCT(id));
       const {
         productName,
@@ -35,7 +38,7 @@ const EditProductform = () => {
       setPreviewImage(url);
       setCategory(category);
       setDescription(description);
-      console.log(response.data.data.image)
+      setIsLoading(false);
     };
     getProductById();
   }, [DETAIL_PRODUCT, id]);
@@ -55,11 +58,13 @@ const EditProductform = () => {
     form.append('category', category);
     form.append('description', description);
     try {
+      setIsLoading(true);
       await axios.put(UPDATE_PRODUCT(id), form, {
         headers: {
           "Content-type": "multipart/form-data"
         }
       });
+      setIsLoading(false);
       navigate('/products');
     } catch (error) {
       if (error.response) {
@@ -80,6 +85,7 @@ const EditProductform = () => {
               {message && Alert(message)}
 
               <form onSubmit={updateProduct} className="grid grid-cols-1 gap-6 mt-8 ">
+              {isLoading && <Spinner/>}
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Nama Produk</label>
                   <input

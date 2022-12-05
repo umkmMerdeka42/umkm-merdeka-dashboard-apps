@@ -3,10 +3,13 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
+import Spinner from './Spinner';
 
 const ListProduct = () => {
-  const [ products, setProducts ] = useState([]);
   const { PRODUCTS, DELETE_PRODUCT } = API_ENDPOINT;
+
+  const [ products, setProducts ] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   const { user } = useSelector((state) => state.auth)
 
@@ -20,12 +23,15 @@ const ListProduct = () => {
   };
 
   const deleteProduct = async (id) => {
+    setIsLoading(true);
     await axios.delete(DELETE_PRODUCT(id));
+    setIsLoading(false);
     allProduct();
   };
   
   return (
     <div>
+      {isLoading && <Spinner/>}
       <section className="w-[270px] md:w-[640px] lg:w-[50rem] xl:w-[62rem] mb-6 text-gray-600">
         <div className="flex flex-col justify-center h-full">
           <div className="w-full mr-[14px] bg-white shadow-lg rounded-md border border-gray-200">

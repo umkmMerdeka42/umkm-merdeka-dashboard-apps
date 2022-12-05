@@ -3,8 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
 import Alert from './Alert';
+import Spinner from './Spinner';
 
 const AddProductform = () => {
+
+  const { PRODUCTS } = API_ENDPOINT;
 
   const [productName, setProductName] = useState('');
   const [price, setPrice] = useState('');
@@ -13,10 +16,10 @@ const AddProductform = () => {
   const [category, setCategory] = useState('');
   const [description, setDescription] = useState('');
   const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const { PRODUCTS } = API_ENDPOINT;
 
   const addImage = (e) => {
     const image = e.target.files[0];
@@ -33,11 +36,13 @@ const AddProductform = () => {
     form.append('category', category);
     form.append('description', description);
     try {
+      setIsLoading(true);
       await axios.post(PRODUCTS, form, {
         headers: {
           "Content-type": "multipart/form-data"
         }
       });
+      setIsLoading(false);
       navigate('/products');
     } catch (error) {
       if (error.response) {
@@ -48,6 +53,7 @@ const AddProductform = () => {
   
   return (
     <div>
+      {isLoading && <Spinner />}
       <section className="bg-white md:border rounded-md md:shadow-md mb-7">
         <div className="flex justify-center">
           <div className="flex items-center w-[300px] md:w-[650px] lg:w-[900px] mx-auto md:py-8 px-4 lg:px-12">

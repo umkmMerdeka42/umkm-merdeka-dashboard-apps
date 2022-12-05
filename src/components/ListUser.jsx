@@ -2,10 +2,13 @@ import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
+import Spinner from './Spinner';
 
 const ListUser = () => {
-  const [users, setUsers] = useState([]);
   const { USERS, DELETE_USERS } = API_ENDPOINT;
+
+  const [users, setUsers] = useState([]);
+  const [isLoading, setIsloading] = useState(false);
   
   useEffect(() => {
     allUsers();
@@ -17,12 +20,15 @@ const ListUser = () => {
   };
 
   const deleteUsers = async (id) => {
+    setIsloading(true);
     await axios.delete(DELETE_USERS(id));
+    setIsloading(false);
     allUsers();
   };
   
   return (
     <div>
+      {isLoading && <Spinner/>}
       <section className="w-[270px] md:w-[640px] lg:w-[50rem] xl:w-[62rem] mb-6 text-gray-600">
         <div className="flex flex-col justify-center h-full">
           <div className="w-full mr-[14px] bg-white shadow-lg rounded-md border border-gray-200">

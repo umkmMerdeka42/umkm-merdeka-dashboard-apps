@@ -3,8 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
 import Alert from './Alert';
+import Spinner from './Spinner';
 
 const AddUserform = () => {
+  const { USERS } = API_ENDPOINT;
+
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [telephone, setTelephone] = useState('');
@@ -13,14 +16,15 @@ const AddUserform = () => {
   const [password, setPassword] = useState('');
   const [confPassword, setConfPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  const { USERS } = API_ENDPOINT;
 
   const addUsers = async (e) => {
     e.preventDefault();
     try {
+      setIsLoading(true);
       await axios.post(USERS, {
         name: name,
         email: email,
@@ -30,6 +34,7 @@ const AddUserform = () => {
         password: password,
         confPassword: confPassword
       });
+      setIsLoading(false);
       navigate('/users');
     } catch (error) {
         if (error.response) {
@@ -40,6 +45,7 @@ const AddUserform = () => {
   
   return (
     <div>
+    {isLoading && <Spinner />}
       <section className="bg-white md:border rounded-md md:shadow-md mb-7">
         <div className="flex justify-center">
           <div className="flex items-center w-[300px] md:w-[650px] lg:w-[900px] mx-auto md:py-8 px-4 lg:px-12">

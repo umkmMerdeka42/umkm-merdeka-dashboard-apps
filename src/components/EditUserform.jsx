@@ -16,7 +16,7 @@ const EditUserform = () => {
   const [password, setPassword] = useState('');
   const [confPassword, setConfPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -26,7 +26,7 @@ const EditUserform = () => {
   useEffect(() => {
     const getUserById = async () => {
       try {
-        setLoading(true);
+        setIsLoading(true);
         const response = await axios.get(DETAIL_USERS(id));
         const {
           name,
@@ -40,7 +40,7 @@ const EditUserform = () => {
         setTelephone(telephone);
         setUniversity(university);
         setNim(nim);
-        setLoading(false);
+        setIsLoading(false);
       } catch (error) {
         setMessage(error.response.data.message);
       }
@@ -51,7 +51,7 @@ const EditUserform = () => {
   const editUsers = async (e) => {
     e.preventDefault();
     try {
-      setLoading(true);
+      setIsLoading(true);
       await axios.put(UPDATE_USERS(id), {
         name: name,
         email: email,
@@ -61,10 +61,11 @@ const EditUserform = () => {
         password: password,
         confPassword: confPassword
       });
-      setLoading(false);
+      setIsLoading(false);
       navigate('/users');
     } catch (error) {
         if (error.response) {
+          setIsLoading(false);
           setMessage(error.response.data.message)
         }
     }
@@ -82,7 +83,7 @@ const EditUserform = () => {
               {message && Alert(message)}
 
               <form onSubmit={editUsers} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
-              {loading && <Spinner />}
+              {isLoading && <Spinner />}
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Nama</label>
                   <input
