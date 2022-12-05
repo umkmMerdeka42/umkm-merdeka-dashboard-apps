@@ -1,18 +1,21 @@
 import React, {useState, useEffect} from 'react';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
 
 const ListProduct = () => {
   const [ products, setProducts ] = useState([]);
-  const { ALL_PRODUCT, DELETE_PRODUCT } = API_ENDPOINT;
+  const { PRODUCTS, DELETE_PRODUCT } = API_ENDPOINT;
+
+  const { user } = useSelector((state) => state.auth)
 
   useEffect(() => {
     allProduct();
   });
 
   const allProduct = async () => {
-    const response = await axios.get(ALL_PRODUCT);
+    const response = await axios.get(PRODUCTS);
     setProducts(response.data.data);
   };
 
@@ -23,7 +26,7 @@ const ListProduct = () => {
   
   return (
     <div>
-      <section className="w-[270px] md:w-[640px] lg:w-[50rem] xl:w-[62rem] text-gray-600">
+      <section className="w-[270px] md:w-[640px] lg:w-[50rem] xl:w-[62rem] mb-6 text-gray-600">
         <div className="flex flex-col justify-center h-full">
           <div className="w-full mr-[14px] bg-white shadow-lg rounded-md border border-gray-200">
             <header className="px-5 py-4 border-b border-gray-100 flex justify-between items-center">
@@ -55,9 +58,11 @@ const ListProduct = () => {
                       <th className="py-2 whitespace-nowrap">
                         <div className="px-4 lg:px-0 font-semibold text-left">Kategori</div>
                       </th>
-                      <th className="py-2 whitespace-nowrap">
-                        <div className="px-4 lg:px-0 font-semibold text-left">Pemilik</div>
-                      </th>
+                      {user && user.data.role === 'admin' && (
+                        <th className="py-2 whitespace-nowrap">
+                          <div className="px-4 lg:px-0 font-semibold text-left">Pemilik</div>
+                        </th>
+                      )}
                       <th className="py-2 whitespace-nowrap">
                         <div className="px-4 lg:px-0 font-semibold text-left">Deskripsi</div>
                       </th>
@@ -87,9 +92,11 @@ const ListProduct = () => {
                           <td className="py-2 whitespace-nowrap">
                             <div className="px-4 lg:px-0 text-left">{product.category}</div>
                           </td>
-                          <td className="py-2 whitespace-nowrap">
-                            <div className="px-4 lg:px-0 text-left">{product.user.name}</div>
-                          </td>
+                          {user && user.data.role === 'admin' && (
+                            <td className="py-2 whitespace-nowrap">
+                              <div className="px-4 lg:px-0 text-left">{product.user.name}</div>
+                            </td>
+                          )}
                           <td className="py-2 whitespace-nowrap">
                             <div className="px-4 lg:px-0 text-left">{product.description.slice(0,10)}...</div>
                           </td>

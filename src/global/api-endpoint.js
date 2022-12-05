@@ -6,7 +6,7 @@ const API_ENDPOINT = {
   LOGIN: `${BASE_URL}/login`,
   LOGOUT: `${BASE_URL}/logout`,
   SESSION: `${BASE_URL}/session`,
-  ALL_PRODUCT: `${BASE_URL}/products`,
+  PRODUCTS: `${BASE_URL}/products`,
   UPDATE_PRODUCT: (id) => `${BASE_URL}/products/${id}`,
   DETAIL_PRODUCT: (id) => `${BASE_URL}/products/${id}`,
   DELETE_PRODUCT: (id) => `${BASE_URL}/products/${id}`,

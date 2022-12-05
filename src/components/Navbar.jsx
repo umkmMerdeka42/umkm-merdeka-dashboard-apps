@@ -18,7 +18,7 @@ const Navbar = () => {
                 type="button"
                 data-mdb-ripple="true"
                 data-mdb-ripple-color="light"
-                className="bg-yellow-400 transition duration-200 ease-linear hover:bg-yellow-300 active:bg-yellow-500 text-white rounded-md px-3 py-1 mr-2 shadow-md"><span className="hidden md:inline">Edit Profile </span><i className="fa-solid fa-address-card"></i>
+                className="bg-[#0a2558] transition duration-200 ease-linear hover:bg-[#081d45] active:bg-[[#081d45]] text-white rounded-sm py-1 px-2 md:px-3 md:py-2 mr-2 shadow-md"><span className="hidden md:inline">Edit Profile </span><i className="fa-solid fa-address-card"></i>
               </button>
             </Link>
           </div>

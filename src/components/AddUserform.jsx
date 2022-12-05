@@ -33,7 +33,7 @@ const AddUserform = () => {
       navigate('/users');
     } catch (error) {
         if (error.response) {
-          setMessage(error.response.data.message)
+          setMessage(error.response.data.message);
         }
     }
   }
