@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
 import Alert from './Alert';
+import Spinner from './Spinner';
 
 const EditUserform = () => {
   const { UPDATE_USERS, DETAIL_USERS } = API_ENDPOINT;
@@ -15,6 +16,7 @@ const EditUserform = () => {
   const [password, setPassword] = useState('');
   const [confPassword, setConfPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -24,12 +26,21 @@ const EditUserform = () => {
   useEffect(() => {
     const getUserById = async () => {
       try {
+        setLoading(true);
         const response = await axios.get(DETAIL_USERS(id));
-        setName(response.data.data.name);
-        setEmail(response.data.data.email);
-        setTelephone(response.data.data.telephone);
-        setUniversity(response.data.data.university);
-        setNim(response.data.data.nim);
+        const {
+          name,
+          email,
+          telephone,
+          university,
+          nim
+        } = response.data.data;
+        setName(name);
+        setEmail(email);
+        setTelephone(telephone);
+        setUniversity(university);
+        setNim(nim);
+        setLoading(false);
       } catch (error) {
         setMessage(error.response.data.message);
       }
@@ -40,6 +51,7 @@ const EditUserform = () => {
   const editUsers = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       await axios.put(UPDATE_USERS(id), {
         name: name,
         email: email,
@@ -49,6 +61,7 @@ const EditUserform = () => {
         password: password,
         confPassword: confPassword
       });
+      setLoading(false);
       navigate('/users');
     } catch (error) {
         if (error.response) {
@@ -69,6 +82,7 @@ const EditUserform = () => {
               {message && Alert(message)}
 
               <form onSubmit={editUsers} className="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2">
+              {loading && <Spinner />}
                 <div>
                   <label className="block mb-2 text-sm text-gray-600">Nama</label>
                   <input

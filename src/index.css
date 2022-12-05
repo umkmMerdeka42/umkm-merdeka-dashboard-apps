@@ -38,6 +38,10 @@
   width: calc(100% - 60px);
 }
 
+.spinner {
+  z-index: 99999;
+}
+
 /* Responsive Media Query */
 @media (max-width: 1021px) {
   .sidebar.active {

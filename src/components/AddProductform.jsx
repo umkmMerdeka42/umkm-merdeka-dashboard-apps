@@ -110,6 +110,7 @@ const AddProductform = () => {
                     <option>Minuman</option>
                     <option>Fashion</option>
                     <option>Gadget</option>
+                    <option>Alat Dapur</option>
                     <option>Jasa</option>
                   </select>
                 </div>
