@@ -42,7 +42,7 @@ const ListProduct = () => {
                   type="button"
                   data-mdb-ripple="true"
                   data-mdb-ripple-color="light"
-                  className="bg-red-400 transition duration-200 ease-linear hover:bg-red-300 active:bg-red-500 px-2 py-2 md:px-3 md:py-2 text-[10px] md:text-base md:w-52 rounded-sm text-white font-bold shadow-md">
+                  className="bg-red-400 transition duration-200 ease-linear hover:bg-red-300 active:bg-red-500 px-2 py-2 md:px-3 md:py-2 text-[10px] md:text-base md:w-40 rounded-sm text-white font-bold shadow-md">
                   Add Product <i className="fa-solid fa-cart-plus ml-2"></i>
                 </button>
               </Link>
