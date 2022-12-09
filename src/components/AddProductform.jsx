@@ -119,10 +119,12 @@ const AddProductform = () => {
                     placeholder="No Telephone Customers"
                     className="block w-full px-5  py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40">
                     <option readOnly>Pilih Kategori...</option>
+                    <option>Aksesoris</option>
                     <option>Alat Dapur</option>
                     <option>Alat Tulis</option>
                     <option>Fashion</option>
                     <option>Kebutuhan Rumah Tangga</option>
+                    <option>Kerajinan Tangan</option>
                     <option>Teknologi</option>
                     <option>Jasa</option>
                     <option>Musik</option>
