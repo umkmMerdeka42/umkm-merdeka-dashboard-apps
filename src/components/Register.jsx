@@ -140,7 +140,7 @@ const Register = () => {
                 </div>
               </form>
 
-              <p className="mt-6 text-sm text-center text-gray-400">Sudah bergabung dengan UMKM Merdeka? <NavLink to="/" className="text-secondary focus:text-primary hover:text-primary no-underline">Sign In</NavLink>.</p>
+              <p className="mt-6 text-sm text-center text-gray-400">Sudah bergabung dengan UMKM Merdeka? <NavLink to="/" className="text-secondary focus:text-primary hover:text-primary no-underline font-semibold">Sign In</NavLink>.</p>
             </div>
           </div>
         </div>

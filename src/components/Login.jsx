@@ -7,8 +7,8 @@ import Spinner from './Spinner';
 import Alert from './Alert';
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [ email, setEmail ] = useState("");
+  const [ password, setPassword ] = useState("");
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { user, isError, isSuccess, isLoading, message } = useSelector(
@@ -35,7 +35,7 @@ const Login = () => {
             <div className="flex flex-col justify-center items-center w-full text-center">
               <img src={Logo} className="w-44" alt="logo-umkm-merdeka"/>
 
-              <p className="mt-3 text-gray-500 dark:text-gray-300 font-semibold">UMKM Merdeka Apps</p>
+              <p className="mt-3 text-gray-600 text-xl font-semibold">UMKM Merdeka Apps</p>
             </div>
 
             <div className="mt-8">
@@ -51,7 +51,7 @@ const Login = () => {
                       onChange={(e) => setEmail(e.target.value)}
                       id="email"
                       placeholder="Email Kamu"
-                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md dark:placeholder-gray-600 focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                 </div>
 
@@ -78,7 +78,7 @@ const Login = () => {
                 </div>
               </form>
 
-              <p className="mt-6 text-sm text-center text-gray-400">Belum berabung di UMKM Merdeka? <NavLink to="/register" className="text-secondary focus:text-primary hover:text-primary no-underline">Sign up</NavLink></p>
+              <p className="mt-6 text-sm text-center text-gray-400">Belum berabung di UMKM Merdeka? <NavLink to="/register" className="text-secondary focus:text-primary hover:text-primary no-underline font-semibold">Sign up</NavLink></p>
             </div>
           </div>
         </div>

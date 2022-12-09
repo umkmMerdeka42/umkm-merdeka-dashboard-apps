@@ -4,6 +4,7 @@ import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
 import Alert from './Alert';
 import Spinner from './Spinner';
+import Swal from 'sweetalert2';
 
 const EditProductform = () => {
   const { DETAIL_PRODUCT, UPDATE_PRODUCT } = API_ENDPOINT;
@@ -66,6 +67,11 @@ const EditProductform = () => {
       });
       setIsLoading(false);
       navigate('/products');
+      Swal.fire(
+        'Berhasil edit produk',
+        'Produk kamu berhasil di edit',
+        'success'
+        );
     } catch (error) {
       if (error.response) {
         setMessage(error.response.data.message);

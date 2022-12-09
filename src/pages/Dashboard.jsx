@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import Layout from './Layout';
-import Welcome from '../components/Welcome';
+import HelloUsers from '../components/HelloUsers';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { sessionUser } from '../features/auth';
@@ -22,7 +22,7 @@ const Dashboard = () => {
   
   return (
     <Layout>
-      <Welcome />
+      <HelloUsers />
     </Layout>
   )
 }

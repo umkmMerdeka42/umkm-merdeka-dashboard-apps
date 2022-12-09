@@ -4,6 +4,7 @@ import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
 import Alert from './Alert';
 import Spinner from './Spinner';
+import Swal from 'sweetalert2';
 
 const EditUserform = () => {
   const { UPDATE_USERS, DETAIL_USERS } = API_ENDPOINT;
@@ -63,6 +64,11 @@ const EditUserform = () => {
       });
       setIsLoading(false);
       navigate('/users');
+      Swal.fire(
+        'Berhasil edit users',
+        'Kamu berhasil berhasil edit data users',
+        'success'
+        );
     } catch (error) {
         if (error.response) {
           setIsLoading(false);
@@ -78,7 +84,7 @@ const EditUserform = () => {
           <div className="flex items-center w-[300px] md:w-[650px] lg:w-[900px] mx-auto md:py-8 px-4 lg:px-12">
             <div className="w-full">
               <h1 className=" text-gray-900 text-xl font-semibold text-center">
-                Edit Customers UMKM Merdeka
+                Edit Pengguna UMKM Merdeka
               </h1>
               {message && Alert(message)}
 
@@ -160,7 +166,7 @@ const EditUserform = () => {
                     data-mdb-ripple="true"
                     data-mdb-ripple-color="light"
                     className="block w-full px-5 py-4 mt-2 md:mt-7 text-sm tracking-wide text-white capitalize transition-colors duration-200 ease-in-out rounded-md bg-[#0a2558] hover:bg-sky-700 focus:outline-none focus:ring focus:ring-primary focus:ring-opacity-50">
-                    <span>Update Customers</span>
+                    <span>Perbarui Pengguna</span>
                   </button>
                 </div>
               </form>

@@ -4,14 +4,30 @@ import { useSelector } from 'react-redux';
 import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
 import Spinner from './Spinner';
+import Swal from 'sweetalert2';
 
 const ListProduct = () => {
   const { PRODUCTS, DELETE_PRODUCT } = API_ENDPOINT;
 
   const [ products, setProducts ] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [ isLoading, setIsLoading ] = useState(false);
 
   const { user } = useSelector((state) => state.auth)
+
+  const alert = (id) => {
+    Swal.fire({
+      icon: 'warning',
+      title: 'ingin hapus produk?',
+      text: 'produk yang kamu pilih akan terhapus',
+      showCancelButton: true,
+      confirmButtonText: 'Hapus',
+      confirmButtonColor: '#d33'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteProduct(id);
+      } 
+    });
+  };
 
   useEffect(() => {
     allProduct();
@@ -27,6 +43,11 @@ const ListProduct = () => {
     await axios.delete(DELETE_PRODUCT(id));
     setIsLoading(false);
     allProduct();
+    Swal.fire(
+      'Terhapus!',
+      'Produk Kamu sudah di hapus',
+      'success'
+      );
   };
   
   return (
@@ -116,7 +137,7 @@ const ListProduct = () => {
                             </Link>
                             <button
                               type="button"
-                              onClick={() => deleteProduct(product.uuid)}
+                              onClick={() => alert(product.uuid)}
                               data-mdb-ripple="true"
                               data-mdb-ripple-color="light"
                               className="bg-red-400 min-w-[44px] min-h-[44px] transition duration-200 ease-linear hover:bg-red-300 active:bg-red-500 text-white rounded-full px-2 py-1 shadow-md"><i className="fa-solid fa-trash"></i></button>

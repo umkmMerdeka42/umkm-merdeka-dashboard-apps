@@ -3,17 +3,32 @@ import { Link } from 'react-router-dom';
 import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
 import Spinner from './Spinner';
+import Swal from 'sweetalert2';
 
 const ListUser = () => {
   const { USERS, DELETE_USERS } = API_ENDPOINT;
 
-  const [users, setUsers] = useState([]);
-  const [isLoading, setIsloading] = useState(false);
+  const [ users, setUsers ] = useState([]);
+  const [ isLoading, setIsloading ] = useState(false);
+
+  const alert = (id) => {
+    Swal.fire({
+      icon: 'warning',
+      title: 'ingin hapus produk?',
+      text: 'produk yang kamu pilih akan terhapus',
+      showCancelButton: true,
+      confirmButtonText: 'Hapus',
+      confirmButtonColor: '#d33'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteUsers(id);
+      } 
+    });
+  };
   
   useEffect(() => {
     allUsers();
-  });
-
+  },);
   const allUsers = async () => {
     const response = await axios.get(USERS);
     setUsers(response.data.data);
@@ -24,6 +39,11 @@ const ListUser = () => {
     await axios.delete(DELETE_USERS(id));
     setIsloading(false);
     allUsers();
+    Swal.fire(
+      'Terhapus!',
+      'Produk Kamu sudah di hapus',
+      'success'
+      );
   };
   
   return (
@@ -91,7 +111,7 @@ const ListUser = () => {
                             <div className="px-4 lg:px-0 text-left">{user.telephone}</div>
                           </td>
                           <td className="py-2 whitespace-nowrap">
-                            <div className="px-4 lg:px-0 text-left">{user.university.slice(11)}</div>
+                            <div className="px-4 lg:px-0 text-left">{user.university}</div>
                           </td>
                           <td className="py-2 whitespace-nowrap">
                             <div className="px-4 lg:px-0 text-left">{user.nim}</div>
@@ -110,7 +130,7 @@ const ListUser = () => {
                             </Link>
                             <button
                               type="button"
-                              onClick={() => deleteUsers(user.uuid)}
+                              onClick={() => alert(user.uuid)}
                               data-mdb-ripple="true"
                               data-mdb-ripple-color="light"
                               className="bg-red-400 min-w-[44px] min-h-[44px] transition duration-200 ease-linear hover:bg-red-300 active:bg-red-500 text-white rounded-full px-2 py-1 shadow-md"><i className="fa-solid fa-trash"></i>

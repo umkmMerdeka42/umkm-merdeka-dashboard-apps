@@ -4,6 +4,7 @@ import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
 import Alert from './Alert';
 import Spinner from './Spinner';
+import Swal from 'sweetalert2';
 
 const AddUserform = () => {
   const { USERS } = API_ENDPOINT;
@@ -36,9 +37,15 @@ const AddUserform = () => {
       });
       setIsLoading(false);
       navigate('/users');
+      Swal.fire(
+        'Berhasil Tambah User',
+        'User baru berhasil ditambahkan',
+        'success'
+        );
     } catch (error) {
         if (error.response) {
           setMessage(error.response.data.message);
+          setIsLoading(false);
         }
     }
   }

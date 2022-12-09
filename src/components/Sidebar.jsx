@@ -39,18 +39,25 @@ const Sidebar = () => {
             <NavLink to="/products" className="h-full w-full flex items-center no-underline 
               hover:bg-[#081d45] focus:bg-[#081d45]">
             <i className="min-w-[60px] text-center text-[15px] text-slate-100 fa-solid fa-box-archive"></i>
-            <span className="text-slate-100 text-[15px] font-normal whitespace-nowrap links_name hidden lg:block">Product</span>
+            <span className="text-slate-100 text-[15px] font-normal whitespace-nowrap links_name hidden lg:block">Produk</span>
             </NavLink>
           </li>
           {user && user.data.role === 'admin' && (
             <li className="relative list-none h-[50px]">
-            <NavLink to="/users" className="h-full w-full flex items-center no-underline 
-              hover:bg-[#081d45] focus:bg-[#081d45]">
-            <i className="min-w-[60px] text-center text-[15px] text-slate-100 fa-solid fa-user"></i>
-            <span className="text-slate-100 text-[15px] font-normal whitespace-nowrap links_name hidden lg:block">Users</span>
-            </NavLink>
-          </li>
+              <NavLink to="/users" className="h-full w-full flex items-center no-underline 
+                hover:bg-[#081d45] focus:bg-[#081d45]">
+              <i className="min-w-[60px] text-center text-[15px] text-slate-100 fa-solid fa-user"></i>
+              <span className="text-slate-100 text-[15px] font-normal whitespace-nowrap links_name hidden lg:block">Pengguna</span>
+              </NavLink>
+            </li>
           )}
+          <li className="relative list-none h-[50px]">
+              <a href="http://localhost:9000/#/katalog" className="h-full w-full flex items-center no-underline 
+                hover:bg-[#081d45] focus:bg-[#081d45]">
+              <i className="min-w-[60px] text-center text-[15px] text-slate-100 fa-solid fa-eye"></i>
+              <span className="text-slate-100 text-[15px] font-normal whitespace-nowrap links_name hidden lg:block">Lihat Katalog</span>
+              </a>
+            </li>
 
           <li className="absolute bottom-0 w-full list-none h-[50px]">
             <button

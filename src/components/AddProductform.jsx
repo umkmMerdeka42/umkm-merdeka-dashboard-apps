@@ -4,6 +4,7 @@ import axios from 'axios';
 import API_ENDPOINT from '../global/api-endpoint';
 import Alert from './Alert';
 import Spinner from './Spinner';
+import Swal from 'sweetalert2';
 
 const AddProductform = () => {
 
@@ -44,9 +45,15 @@ const AddProductform = () => {
       });
       setIsLoading(false);
       navigate('/products');
+      Swal.fire(
+        'Berhasil tambah produk',
+        'Produk kamu berhasil di ditambahkan',
+        'success'
+        );
     } catch (error) {
       if (error.response) {
         setMessage(error.response.data.message);
+        setIsLoading(false);
       }
     }
   }
@@ -115,6 +122,7 @@ const AddProductform = () => {
                     <option>Alat Dapur</option>
                     <option>Alat Tulis</option>
                     <option>Fashion</option>
+                    <option>Kebutuhan Rumah Tangga</option>
                     <option>Teknologi</option>
                     <option>Jasa</option>
                     <option>Musik</option>
