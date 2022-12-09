@@ -96,7 +96,7 @@ const EditUserform = () => {
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     type="text"
-                    placeholder="Nama Customers"
+                    placeholder="Nama Pengguna"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
@@ -106,7 +106,7 @@ const EditUserform = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   type="email"
-                  placeholder="Emaill Customers"
+                  placeholder="Emaill Pengguna"
                   className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
@@ -116,7 +116,7 @@ const EditUserform = () => {
                     value={telephone}
                     onChange={(e) => setTelephone(e.target.value)}
                     type="text"
-                    placeholder="No Telephone Customers"
+                    placeholder="No Telephone Pengguna"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
@@ -126,7 +126,7 @@ const EditUserform = () => {
                     value={university}
                     onChange={(e) => setUniversity(e.target.value)}
                     type="text"
-                    placeholder="Kampus Customers"
+                    placeholder="Kampus Pengguna"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
@@ -136,7 +136,7 @@ const EditUserform = () => {
                     value={nim}
                     onChange={(e) => setNim(e.target.value)}
                     type="text"
-                    placeholder="NIM / NPM Customers"
+                    placeholder="NIM / NPM Pengguna"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
@@ -146,7 +146,7 @@ const EditUserform = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     type="password"
-                    placeholder="Password Customers"
+                    placeholder="Password Pengguna"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 
@@ -156,7 +156,7 @@ const EditUserform = () => {
                     value={confPassword}
                     onChange={(e) => setConfPassword(e.target.value)}
                     type="password"
-                    placeholder="Konfirmasi Password Customers"
+                    placeholder="Konfirmasi Password Pengguna"
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                 </div>
 

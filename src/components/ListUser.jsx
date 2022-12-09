@@ -14,8 +14,8 @@ const ListUser = () => {
   const alert = (id) => {
     Swal.fire({
       icon: 'warning',
-      title: 'ingin hapus produk?',
-      text: 'produk yang kamu pilih akan terhapus',
+      title: 'Ingin hapus pengguna?',
+      text: 'Pengguna yang kamu pilih akan terhapus',
       showCancelButton: true,
       confirmButtonText: 'Hapus',
       confirmButtonColor: '#d33'
@@ -41,7 +41,7 @@ const ListUser = () => {
     allUsers();
     Swal.fire(
       'Terhapus!',
-      'Produk Kamu sudah di hapus',
+      'Pengguna yang Kamu pilih sudah di hapus',
       'success'
       );
   };
@@ -53,7 +53,7 @@ const ListUser = () => {
         <div className="flex flex-col justify-center h-full">
           <div className="w-full mr-[14px] bg-white shadow-lg rounded-md border border-gray-200">
             <header className="px-5 py-4 border-b border-gray-100 flex justify-between items-center">
-              <h2 className="font-semibold text-[10px] w-24 md:w-full md:text-base lg:text-xl text-gray-800">Customers UMKM Merdeka</h2>
+              <h2 className="font-semibold text-[10px] w-24 md:w-full md:text-base lg:text-xl text-gray-800">Pengguna UMKM Merdeka</h2>
               <Link to="/users/add">
                 <button
                   type="button"

@@ -54,8 +54,8 @@ const Register = () => {
                 <img src={Logo} className="w-44" alt="logo-umkm-merdeka" />
               </div>
 
-              <h1 className="mt-4 text-gray-500 font-semibold text-center">
-                Ayoo!, Bergabung dengan UMKM Merdeka Sekarang...
+              <h1 className="mt-4 text-gray-600 text-xl font-semibold text-center">
+                Ayoo!, Bergabung dengan UMKM Merdeka Sekarang
               </h1>
               {message && Alert(message)}
 

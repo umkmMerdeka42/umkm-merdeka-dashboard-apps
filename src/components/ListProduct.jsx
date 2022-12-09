@@ -17,7 +17,7 @@ const ListProduct = () => {
   const alert = (id) => {
     Swal.fire({
       icon: 'warning',
-      title: 'ingin hapus produk?',
+      title: 'Ingin hapus produk?',
       text: 'produk yang kamu pilih akan terhapus',
       showCancelButton: true,
       confirmButtonText: 'Hapus',
@@ -45,7 +45,7 @@ const ListProduct = () => {
     allProduct();
     Swal.fire(
       'Terhapus!',
-      'Produk Kamu sudah di hapus',
+      'Produk yang Kamu pilih sudah di hapus',
       'success'
       );
   };
