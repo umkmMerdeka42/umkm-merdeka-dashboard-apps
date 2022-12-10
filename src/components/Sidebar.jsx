@@ -52,7 +52,7 @@ const Sidebar = () => {
             </li>
           )}
           <li className="relative list-none h-[50px]">
-              <a href="http://localhost:9000/#/katalog" className="h-full w-full flex items-center no-underline 
+              <a href="https://umkm-merdeka.netlify.app/#/katalog" className="h-full w-full flex items-center no-underline 
                 hover:bg-[#081d45] focus:bg-[#081d45]">
               <i className="min-w-[60px] text-center text-[15px] text-slate-100 fa-solid fa-eye"></i>
               <span className="text-slate-100 text-[15px] font-normal whitespace-nowrap links_name hidden lg:block">Lihat Katalog</span>
