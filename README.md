@@ -117,7 +117,7 @@ app.use(session({
   store,
   cookie: {
     secure: false,
-    httpOnly: false,
+    httpOnly: true,
     sameSite: 'none',
     maxAge: 1000 * 60 * 60 * 24
   },
@@ -145,18 +145,18 @@ app.use(session({
 * `http://localhost:5000/session` -> dengan method `GET`. Endpoint ini berfungsi untuk melakukan proses mendapatkan session dengan data yang di post oleh pengguna yang login dari endpoint /login. session pada API ini kami setting untuk bertahan selama satu hari, anda bisa merubahnya sesuai keinginan anda, option tersebut bisa anda rubah pada file root `index.js` pada bagian key `maxAge` di dalam object `cookie` dalam option express session middleware.
 * `http://localhost:5000/logout` -> dengan method `DELETE`. Endpoint ini berfungsi untuk melakukan proses logout dari sistem.
 
-#### Endpoint Product
-* `http://localhost:5000/productsguest` -> dengan method `GET`. Endpoint untuk Melihat Keseluruhan data produk, role admin, user dan guest bisa meilhat ini.
-* `http://localhost:5000/productsguest/:id` -> dengan method `GET`. Endpoint untuk Melihat data produk berdasarkan Id tertentu, role admin, user dan guest bisa meilhat ini.
-* `http://localhost:5000/products` -> dengan method `GET`. Endpoint Untuk Melihat data produk, jika role nya admin, maka ia bisa melihat keseluruhan produk yang di upload oleh pengguna. Jika role nya adalah user biasa, maka yang akan tampil adalah data produk yang user tersebut upload saja
-* `http://localhost:5000/products/:id` -> dengan method `GET`. Endpoint untuk Melihat data produk berdasarkan Id tertentu. Jika role nya admin, maka ia bisa melihat keseluruhan data berdasarkan id yang diinputkan, jika role nya users, maka ia hanya bisa melihat detail produk berdasarkan id produk yang ia upload saja.
-* `http://localhost:5000/products` -> dengan method `POST`. Endpoint untuk Mengupload Produk.
-* `http://localhost:5000/products/:id` -> dengan method `PUT`. Endpoint untuk Mengedit Produk.
-* `http://localhost:5000/products/:id` -> dengan method `DELETE`. Endpoint untuk Menghapus Produk.
+#### Endpoint Products
+* `http://localhost:5000/productsguest` -> dengan method `GET`. Endpoint ini berfungsi untuk Melihat Keseluruhan data produk, role admin, user dan guest bisa meilhat ini.
+* `http://localhost:5000/productsguest/:id` -> dengan method `GET`. Endpoint ini berfungsi untuk Melihat data produk berdasarkan Id tertentu, role admin, user dan guest bisa meilhat ini.
+* `http://localhost:5000/products` -> dengan method `GET`. Endpoint ini berfungsi Untuk Melihat data produk, jika role nya admin, maka ia bisa melihat keseluruhan produk yang di upload oleh pengguna. Jika role nya adalah user biasa, maka yang akan tampil adalah data produk yang user tersebut upload saja
+* `http://localhost:5000/products/:id` -> dengan method `GET`. Endpoint ini berfungsi untuk Melihat data produk berdasarkan Id tertentu. Jika role nya admin, maka ia bisa melihat keseluruhan data berdasarkan id yang diinputkan, jika role nya users, maka ia hanya bisa melihat detail produk berdasarkan id produk yang ia upload saja.
+* `http://localhost:5000/products` -> dengan method `POST`. Endpoint ini berfungsi untuk Mengupload Produk.
+* `http://localhost:5000/products/:id` -> dengan method `PUT`. Endpoint ini berfungsi untuk Mengedit Produk.
+* `http://localhost:5000/products/:id` -> dengan method `DELETE`. Endpoint ini berfungsi untuk Menghapus Produk.
 
 #### Endpoint Users
-* `http://localhost:5000/users` -> dengan method `GET`. Endpoint untuk mendapatkan data keseluruhan users. Endpoint ini hanya bisa diakses oleh role admin saja.
-* `http://localhost:5000/users/:id` -> dengan method `GET`. Endpoint ini untuk mendapatkan data users berdasarkan id nya. Endpoint ini bisa diakses oleh role admin, dan di set untuk mendapatkan data users ketika admin ataupun users ingin mengedit profile nya.
-* `http://localhost:5000/users` -> dengan method `POST`. Endpoint ini untuk menambahkan users baru bagi role admin, dan sebagai fungsi registrasi bagi user baru yang ingin bergabung dengan UMKM Merdeka.
-* `http://localhost:5000/users/:id` -> dengan method `PUT`. Endpoint ini untuk mengedit data user oleh role admin ataupun bisa juga digunakan oleh user untuk mengedit data profilenya.
-* `http://localhost:5000/users/:id` -> dengan method `DELETE`. Endpoint ini untuk menghapus user. Endpoint ini hanya bisa diakses oleh role admin saja.
+* `http://localhost:5000/users` -> dengan method `GET`. Endpoint ini berfungsi untuk mendapatkan data keseluruhan users. Endpoint ini hanya bisa diakses oleh role admin saja.
+* `http://localhost:5000/users/:id` -> dengan method `GET`. Endpoint ini berfungsi untuk mendapatkan data users berdasarkan id nya. Endpoint ini bisa diakses oleh role admin, dan di set untuk mendapatkan data users ketika admin ataupun users ingin mengedit profile nya.
+* `http://localhost:5000/users` -> dengan method `POST`. Endpoint ini berfungsi untuk menambahkan users baru bagi role admin, dan sebagai fungsi registrasi bagi user baru yang ingin bergabung dengan UMKM Merdeka.
+* `http://localhost:5000/users/:id` -> dengan method `PUT`. Endpoint ini berfungsi untuk mengedit data user oleh role admin ataupun bisa juga digunakan oleh user untuk mengedit data profilenya.
+* `http://localhost:5000/users/:id` -> dengan method `DELETE`. Endpoint ini berfungsi untuk menghapus user. Endpoint ini hanya bisa diakses oleh role admin saja.
