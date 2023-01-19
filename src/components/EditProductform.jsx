@@ -86,7 +86,7 @@ const EditProductform = () => {
           <div className="flex items-center w-[300px] md:w-[650px] lg:w-[900px] mx-auto md:py-8 px-4 lg:px-12">
             <div className="w-full">
               <h1 className=" text-gray-900 text-xl font-semibold text-center">
-                Tambah Produk UMKM Merdeka
+                Edit Produk UMKM Merdeka
               </h1>
               {message && Alert(message)}
 
